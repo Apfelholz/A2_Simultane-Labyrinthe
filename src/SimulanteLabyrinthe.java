@@ -28,12 +28,12 @@ public class SimulanteLabyrinthe {
         two_wall_v = formatInputData_v(FileReaderx.readToInt2DArray(dateipfad, 1+(y-1)+y-1+1+one_numberOfPits+1, 1+(y-1)+y-1+1+one_numberOfPits+y), x, y);
         two_wall_h = formatInputData_h(FileReaderx.readToInt2DArray(dateipfad, 1+(y-1)+y-1+1+one_numberOfPits+y+1, 1+(y-1)+y-1+1+one_numberOfPits+y+y-1), x, y);
 
-        int tow_numberOfPits = FileReaderx.readLineToInt(dateipfad, 1+(y-1)+y-1+1+one_numberOfPits+y+y-1+1);
+        int two_numberOfPits = FileReaderx.readLineToInt(dateipfad, 1+(y-1)+y-1+1+one_numberOfPits+y+y-1+1);
         
-        int[][] tow_pits = new int[tow_numberOfPits][2];
+        int[][] two_pits = new int[two_numberOfPits][2];
 
-        if(tow_numberOfPits > 0){
-            tow_pits = FileReaderx.readToInt2DArray(dateipfad, 1+(y-1)+y-1+1+one_numberOfPits+y+y-1+1+1, 1+(y-1)+y-1+1+one_numberOfPits+y+y-1+1+tow_numberOfPits);
+        if(two_numberOfPits > 0){
+            two_pits = FileReaderx.readToInt2DArray(dateipfad, 1+(y-1)+y-1+1+one_numberOfPits+y+y-1+1+1, 1+(y-1)+y-1+1+one_numberOfPits+y+y-1+1+two_numberOfPits);
         }
     }
 

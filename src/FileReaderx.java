@@ -42,7 +42,7 @@ public class FileReaderx {
     }
 
     // Read one line of the file to different data types
-    public static String[] readLineToWordString(String filePath, int line) {
+    public static String[] readLinetwoordString(String filePath, int line) {
         List<String> wordList = new ArrayList<>();
         
         try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), "UTF-8"))) {           
