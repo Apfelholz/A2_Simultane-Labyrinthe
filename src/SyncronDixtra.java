@@ -107,26 +107,26 @@ public class SyncronDixtra {
         //↓
         if (akk.lastDirection != 1){
             if (!one_wall_h[akk.one_x][akk.one_y] && !two_wall_h[akk.two_x][akk.two_x]){
-                if (one_pits[akk.one_x][akk.one_y-1] && two_pits[akk.two_x][akk.two_y-1]){
+                if (one_pits[akk.one_x][akk.one_y+1] && two_pits[akk.two_x][akk.two_y+1]){
                     options.add(new Frame(0, 0, 0, 0, akk, 3));
-                }else if (one_pits[akk.one_x][akk.one_y-1]){
-                    options.add(new Frame(0, 0, akk.two_x, akk.two_y-1, akk, 3));
-                }else if (two_pits[akk.two_x][akk.two_y-1]){
-                    options.add(new Frame(akk.one_x, akk.one_y-1, 0, 0, akk, 3));
+                }else if (one_pits[akk.one_x][akk.one_y+1]){
+                    options.add(new Frame(0, 0, akk.two_x, akk.two_y+1, akk, 3));
+                }else if (two_pits[akk.two_x][akk.two_y+1]){
+                    options.add(new Frame(akk.one_x, akk.one_y+1, 0, 0, akk, 3));
                 }else{
-                    options.add(new Frame(akk.one_x, akk.one_y-1, akk.two_x, akk.two_y-1, akk, 3));
+                    options.add(new Frame(akk.one_x, akk.one_y+1, akk.two_x, akk.two_y+1, akk, 3));
                 }
             }else if (!one_wall_h[akk.one_x][akk.one_y]){
-                if (one_pits[akk.one_x][akk.one_y-1]){
+                if (one_pits[akk.one_x][akk.one_y+1]){
                     options.add(new Frame(0, 0, akk.two_x, akk.two_y, akk, 3));
                 }else{
-                    options.add(new Frame(akk.one_x, akk.one_y-1, akk.two_x, akk.two_y, akk, 3));
+                    options.add(new Frame(akk.one_x, akk.one_y+1, akk.two_x, akk.two_y, akk, 3));
                 }
             }else if (!two_wall_h[akk.two_x][akk.two_x]){
-                if (two_pits[akk.two_x][akk.two_y-1]){
+                if (two_pits[akk.two_x][akk.two_y+1]){
                     options.add(new Frame(akk.one_x, akk.one_y, 0, 0, akk, 3));
                 }else{
-                    options.add(new Frame(akk.one_x, akk.one_y, akk.two_x, akk.two_y-1, akk, 3));
+                    options.add(new Frame(akk.one_x, akk.one_y, akk.two_x, akk.two_y+1, akk, 3));
                 }
             }
         }
