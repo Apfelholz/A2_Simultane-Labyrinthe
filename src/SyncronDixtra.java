@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -197,6 +198,20 @@ public class SyncronDixtra {
     }
 
     private String[] getInstructions(Frame f){
-        //! implemet getting the Instruktens from the final frame
+        ArrayList<String> Instructions = new ArrayList<>();
+        while(true){
+            if (f.lastDirection == 0){
+                return Instructions.toArray(new String[0]);
+            }else if (f.lastDirection == 1){
+                Instructions.addLast("↑");
+            }else if (f.lastDirection == 2){
+                Instructions.addLast("→");
+            }else if (f.lastDirection == 3){
+                Instructions.addLast("↓");
+            }else if (f.lastDirection == 4){
+                Instructions.addLast("←");
+            }
+            f = f.dad;
+        }
     }
 }
