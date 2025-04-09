@@ -16,10 +16,10 @@ public class SimulanteLabyrinthe {
 
         int one_numberOfPits = FileReaderx.readLineToInt(dateipfad, 1+(y-1)+y-1+1);
 
-        int[][] one_pits = new int[one_numberOfPits][2];
+        boolean[][] one_pits = new boolean[one_numberOfPits][2];
 
         if (one_numberOfPits > 0){
-            one_pits = FileReaderx.readToInt2DArray(dateipfad, 1+(y-1)+y-1+1+1, 1+(y-1)+y-1+1+one_numberOfPits);
+            one_pits = formatInputData_pits(FileReaderx.readToInt2DArray(dateipfad, 1+(y-1)+y-1+1+1, 1+(y-1)+y-1+1+one_numberOfPits), x, y);
         }
 
         boolean[][] two_wall_v = new boolean[x][y];
@@ -30,11 +30,26 @@ public class SimulanteLabyrinthe {
 
         int two_numberOfPits = FileReaderx.readLineToInt(dateipfad, 1+(y-1)+y-1+1+one_numberOfPits+y+y-1+1);
         
-        int[][] two_pits = new int[two_numberOfPits][2];
+        boolean[][] two_pits = new boolean[two_numberOfPits][2];
 
         if(two_numberOfPits > 0){
-            two_pits = FileReaderx.readToInt2DArray(dateipfad, 1+(y-1)+y-1+1+one_numberOfPits+y+y-1+1+1, 1+(y-1)+y-1+1+one_numberOfPits+y+y-1+1+two_numberOfPits);
+            two_pits = formatInputData_pits(FileReaderx.readToInt2DArray(dateipfad, 1+(y-1)+y-1+1+one_numberOfPits+y+y-1+1+1, 1+(y-1)+y-1+1+one_numberOfPits+y+y-1+1+two_numberOfPits), x, y);
         }
+
+        SyncronDixtra syncronDixtra = new SyncronDixtra(one_wall_v, one_wall_h, one_pits, two_wall_v, two_wall_h, two_pits, x, y);
+        String[] Instructions = syncronDixtra.findInstructions(0, 0, 0, 0);
+
+        System.out.println(Instructions.toString());
+    }
+
+    private static boolean[][] formatInputData_pits(int[][] rawData, int x, int y){
+        boolean[][] pits = new boolean[x][y];
+
+        for (int[] d : rawData){
+            pits[d[0]][d[1]] = true;
+        }
+
+        return pits;
     }
 
     private static boolean[][] formatInputData_v(int[][] rawData, int x, int y){

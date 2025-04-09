@@ -181,7 +181,7 @@ public class SyncronDixtra {
 
     public String[] findInstructions(int one_x, int one_y, int two_x, int two_y){
         
-        Frame akkFrame = new Frame(0, 0, 0, 0, null, 0);
+        Frame akkFrame = new Frame(one_x, one_y, two_x, two_y, null, 0);
 
         Queue<Frame> options = new LinkedList<>();
         options.add(akkFrame);
