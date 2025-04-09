@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 
 public class Frame {
     int one_x;
@@ -6,16 +5,15 @@ public class Frame {
     int two_x;
     int two_y;
 
-    ArrayList<Frame> childs = new ArrayList<Frame>();
+    Frame dad;
+    int lastDirection;
 
-    public Frame(int one_x, int one_y, int two_x, int two_y){
+    public Frame(int one_x, int one_y, int two_x, int two_y, Frame dad, int direction){
         this.one_x = one_x;
         this.one_y = one_y;
         this.two_x = two_x;
         this.two_y = two_y;
-    }
-
-    public void addChild(Frame child){
-        childs.add(child);
+        this.dad = dad;
+        this.lastDirection = direction;
     }
 }
