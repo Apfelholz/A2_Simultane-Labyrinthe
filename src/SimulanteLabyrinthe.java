@@ -64,7 +64,7 @@ public class SimulanteLabyrinthe {
                 }
             }
         }
-        for(int i = 0; i < y-1; i++){
+        for(int i = 0; i < y; i++){
             wall_v[x-1][i] = true;
         }
 
@@ -83,7 +83,7 @@ public class SimulanteLabyrinthe {
                 }
             }
         }
-        for(int i = 0; i < x-1; i++){
+        for(int i = 0; i < x; i++){
             wall_h[i][y-1] = true;
         }
 
