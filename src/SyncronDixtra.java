@@ -189,7 +189,7 @@ public class SyncronDixtra {
         while(true){
             akkFrame = options.poll();
             
-            if(akkFrame.one_x == x && akkFrame.one_y == y && akkFrame.two_x == x && akkFrame.two_y == y){
+            if(akkFrame.one_x == x-1 && akkFrame.one_y == y-1 && akkFrame.two_x == x-1 && akkFrame.two_y == y-1){
                 return getInstructions(akkFrame);
             }
 
@@ -203,13 +203,13 @@ public class SyncronDixtra {
             if (f.lastDirection == 0){
                 return Instructions.toArray(new String[0]);
             }else if (f.lastDirection == 1){
-                Instructions.addLast("↑");
+                Instructions.addLast("^");
             }else if (f.lastDirection == 2){
-                Instructions.addLast("→");
+                Instructions.addLast("->");
             }else if (f.lastDirection == 3){
-                Instructions.addLast("↓");
+                Instructions.addLast("|");
             }else if (f.lastDirection == 4){
-                Instructions.addLast("←");
+                Instructions.addLast("<-");
             }
             f = f.dad;
         }
