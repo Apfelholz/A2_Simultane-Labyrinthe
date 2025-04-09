@@ -16,7 +16,7 @@ public class SimulanteLabyrinthe {
 
         int one_numberOfPits = FileReaderx.readLineToInt(dateipfad, 1+(y-1)+y-1+1);
 
-        boolean[][] one_pits = new boolean[one_numberOfPits][2];
+        boolean[][] one_pits = new boolean[x][y];
 
         if (one_numberOfPits > 0){
             one_pits = formatInputData_pits(FileReaderx.readToInt2DArray(dateipfad, 1+(y-1)+y-1+1+1, 1+(y-1)+y-1+1+one_numberOfPits), x, y);
@@ -30,7 +30,7 @@ public class SimulanteLabyrinthe {
 
         int two_numberOfPits = FileReaderx.readLineToInt(dateipfad, 1+(y-1)+y-1+1+one_numberOfPits+y+y-1+1);
         
-        boolean[][] two_pits = new boolean[two_numberOfPits][2];
+        boolean[][] two_pits = new boolean[x][y];
 
         if(two_numberOfPits > 0){
             two_pits = formatInputData_pits(FileReaderx.readToInt2DArray(dateipfad, 1+(y-1)+y-1+1+one_numberOfPits+y+y-1+1+1, 1+(y-1)+y-1+1+one_numberOfPits+y+y-1+1+two_numberOfPits), x, y);
@@ -64,6 +64,9 @@ public class SimulanteLabyrinthe {
                 }
             }
         }
+        for(int i = 0; i < y-1; i++){
+            wall_v[x-1][i] = true;
+        }
 
         return wall_v;
     }
@@ -79,6 +82,9 @@ public class SimulanteLabyrinthe {
                     wall_h[ix][iy] = false;
                 }
             }
+        }
+        for(int i = 0; i < x-1; i++){
+            wall_h[i][y-1] = true;
         }
 
         return wall_h;
