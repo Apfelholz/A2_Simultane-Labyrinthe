@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
-
 public class SyncronDixtra {
     boolean[][] one_wall_v;
     boolean[][] one_wall_h;
@@ -36,25 +35,25 @@ public class SyncronDixtra {
         if (akk.lastDirection != 4){
             if(!one_wall_v[akk.one_x][akk.one_y] && !two_wall_v[akk.two_x][akk.two_y]){
                 if (one_pits[akk.one_x+1][akk.one_y] && two_pits[akk.two_x+1][akk.two_y]){
-                    options.add(new Frame(0, 0, 0, 0, akk, 2));
+                    options.add(new Frame(0, 0, 0, 0, akk, 2, 2, 2));
                 }else if (two_pits[akk.two_x+1][akk.two_y]){
-                    options.add(new Frame(akk.one_x+1, akk.one_y, 0, 0, akk, 2));
+                    options.add(new Frame(akk.one_x+1, akk.one_y, 0, 0, akk, 2, 2, 2));
                 }else if (one_pits[akk.one_x+1][akk.one_y]){
-                    options.add(new Frame(0, 0, akk.two_x+1, akk.two_y, akk, 2));
+                    options.add(new Frame(0, 0, akk.two_x+1, akk.two_y, akk, 2, 2, 2));
                 }else {
-                    options.add(new Frame(akk.one_x+1, akk.one_y, akk.two_x+1, akk.two_y, akk, 2));
+                    options.add(new Frame(akk.one_x+1, akk.one_y, akk.two_x+1, akk.two_y, akk, 2, 2, 2));
                 }
-            }else if(!two_wall_v[akk.two_x][akk.two_y] && !(akk.two_x == x-1 && akk.two_y == y-1)){
+            }else if(!two_wall_v[akk.two_x][akk.two_y] && !(akk.two_x == x-1 && akk.two_y == y-1) && akk.two_lastDirection != 4){
                 if (two_pits[akk.two_x+1][akk.two_y]){
-                    options.add(new Frame(akk.one_x, akk.one_y, 0, 0, akk, 2));
+                    options.add(new Frame(akk.one_x, akk.one_y, 0, 0, akk, 2, akk.one_lastDirection, 2));
                 }else {
-                    options.add(new Frame(akk.one_x, akk.one_y, akk.two_x+1, akk.two_y, akk, 2));
+                    options.add(new Frame(akk.one_x, akk.one_y, akk.two_x+1, akk.two_y, akk, 2, akk.one_lastDirection, 2));
                 } 
-            }else if (!one_wall_v[akk.one_x][akk.one_y] && !(akk.one_x == x-1 && akk.one_y == y-1)){
+            }else if (!one_wall_v[akk.one_x][akk.one_y] && !(akk.one_x == x-1 && akk.one_y == y-1) && akk.one_lastDirection != 4){
                 if (one_pits[akk.one_x+1][akk.one_y]){
-                    options.add(new Frame(0, 0, akk.two_x, akk.two_y, akk, 2));
+                    options.add(new Frame(0, 0, akk.two_x, akk.two_y, akk, 2, 2, akk.two_lastDirection));
                 }else {
-                    options.add(new Frame(akk.one_x+1, akk.one_y, akk.two_x, akk.two_y, akk, 2));
+                    options.add(new Frame(akk.one_x+1, akk.one_y, akk.two_x, akk.two_y, akk, 2, 2, akk.two_lastDirection));
                 }
             }
         }
@@ -64,41 +63,41 @@ public class SyncronDixtra {
             if (akk.one_x > 0 && akk.two_x > 0){
                 if (!one_wall_v[akk.one_x-1][akk.one_y] && !two_wall_v[akk.two_x-1][akk.two_y]){
                     if (one_pits[akk.one_x-1][akk.one_y] && two_pits[akk.two_x-1][akk.two_y]){
-                        options.add(new Frame(0, 0, 0, 0, akk, 4));
+                        options.add(new Frame(0, 0, 0, 0, akk, 4, 4, 4));
                     }else if (one_pits[akk.one_x-1][akk.one_y]){
-                        options.add(new Frame(0, 0, akk.two_x-1, akk.two_y, akk, 4));
+                        options.add(new Frame(0, 0, akk.two_x-1, akk.two_y, akk, 4, 4, 4));
                     }else if (two_pits[akk.two_x-1][akk.two_y]){
-                        options.add(new Frame(akk.one_x-1, akk.one_y, 0, 0, akk, 4));
+                        options.add(new Frame(akk.one_x-1, akk.one_y, 0, 0, akk, 4, 4, 4));
                     }else {
-                        options.add(new Frame(akk.one_x-1, akk.one_y, akk.two_x-1, akk.two_y, akk, 4));
+                        options.add(new Frame(akk.one_x-1, akk.one_y, akk.two_x-1, akk.two_y, akk, 4, 4, 4));
                     }
-                } else if(!one_wall_v[akk.one_x-1][akk.one_y] && !(akk.one_x == x-1 && akk.one_y == y-1)){
+                } else if(!one_wall_v[akk.one_x-1][akk.one_y] && !(akk.one_x == x-1 && akk.one_y == y-1) && akk.one_lastDirection != 2){
                     if (one_pits[akk.one_x-1][akk.one_y]){
-                        options.add(new Frame(0, 0, akk.two_x, akk.two_y, akk, 4));
+                        options.add(new Frame(0, 0, akk.two_x, akk.two_y, akk, 4, 4, akk.two_lastDirection));
                     }else {
-                        options.add(new Frame(akk.one_x-1, akk.one_y, akk.two_x, akk.two_y, akk, 4));
+                        options.add(new Frame(akk.one_x-1, akk.one_y, akk.two_x, akk.two_y, akk, 4, 4, akk.two_lastDirection));
                     }
-                } else if(!two_wall_v[akk.two_x-1][akk.two_y] && !(akk.two_x == x-1 && akk.two_y == y-1)){
+                } else if(!two_wall_v[akk.two_x-1][akk.two_y] && !(akk.two_x == x-1 && akk.two_y == y-1) && akk.two_lastDirection != 2){
                     if (two_pits[akk.two_x-1][akk.two_y]){
-                        options.add(new Frame(akk.one_x, akk.one_y, 0, 0, akk, 4));
+                        options.add(new Frame(akk.one_x, akk.one_y, 0, 0, akk, 4, akk.one_lastDirection, 4));
                     }else {
-                        options.add(new Frame(akk.one_x, akk.one_y, akk.two_x-1, akk.two_y, akk, 4));
+                        options.add(new Frame(akk.one_x, akk.one_y, akk.two_x-1, akk.two_y, akk, 4, akk.one_lastDirection, 4));
                     }
                 }
             }else if(akk.one_x > 0){
-                if(!one_wall_v[akk.one_x-1][akk.one_y] && !(akk.one_x == x-1 && akk.one_y == y-1)){
+                if(!one_wall_v[akk.one_x-1][akk.one_y] && !(akk.one_x == x-1 && akk.one_y == y-1) && akk.one_lastDirection != 2){
                     if (one_pits[akk.one_x-1][akk.one_y]){
-                        options.add(new Frame(0, 0, akk.two_x, akk.two_y, akk, 4));
+                        options.add(new Frame(0, 0, akk.two_x, akk.two_y, akk, 4, 4, akk.two_lastDirection));
                     }else {
-                        options.add(new Frame(akk.one_x-1, akk.one_y, akk.two_x, akk.two_y, akk, 4));
+                        options.add(new Frame(akk.one_x-1, akk.one_y, akk.two_x, akk.two_y, akk, 4, 4, akk.two_lastDirection));
                     }
                 }
             }else if(akk.two_x > 0){
-                if(!two_wall_v[akk.two_x-1][akk.two_y] && !(akk.two_x == x-1 && akk.two_y == y-1)){
+                if(!two_wall_v[akk.two_x-1][akk.two_y] && !(akk.two_x == x-1 && akk.two_y == y-1)  && akk.two_lastDirection != 2){
                     if (two_pits[akk.two_x-1][akk.two_y]){
-                        options.add(new Frame(akk.one_x, akk.one_y, 0, 0, akk, 4));
+                        options.add(new Frame(akk.one_x, akk.one_y, 0, 0, akk, 4, akk.one_lastDirection, 4));
                     }else {
-                        options.add(new Frame(akk.one_x, akk.one_y, akk.two_x-1, akk.two_y, akk, 4));
+                        options.add(new Frame(akk.one_x, akk.one_y, akk.two_x-1, akk.two_y, akk, 4, akk.one_lastDirection, 4));
                     }
                 }
             }
@@ -108,25 +107,25 @@ public class SyncronDixtra {
         if (akk.lastDirection != 1){
             if (!one_wall_h[akk.one_x][akk.one_y] && !two_wall_h[akk.two_x][akk.two_y]){
                 if (one_pits[akk.one_x][akk.one_y+1] && two_pits[akk.two_x][akk.two_y+1]){
-                    options.add(new Frame(0, 0, 0, 0, akk, 3));
+                    options.add(new Frame(0, 0, 0, 0, akk, 3, 3, 3));
                 }else if (one_pits[akk.one_x][akk.one_y+1]){
-                    options.add(new Frame(0, 0, akk.two_x, akk.two_y+1, akk, 3));
+                    options.add(new Frame(0, 0, akk.two_x, akk.two_y+1, akk, 3, 3, 3));
                 }else if (two_pits[akk.two_x][akk.two_y+1]){
-                    options.add(new Frame(akk.one_x, akk.one_y+1, 0, 0, akk, 3));
+                    options.add(new Frame(akk.one_x, akk.one_y+1, 0, 0, akk, 3, 3, 3));
                 }else{
-                    options.add(new Frame(akk.one_x, akk.one_y+1, akk.two_x, akk.two_y+1, akk, 3));
+                    options.add(new Frame(akk.one_x, akk.one_y+1, akk.two_x, akk.two_y+1, akk, 3, 3, 3));
                 }
-            }else if (!one_wall_h[akk.one_x][akk.one_y] && !(akk.one_x == x-1 && akk.one_y == y-1)){
+            }else if (!one_wall_h[akk.one_x][akk.one_y] && !(akk.one_x == x-1 && akk.one_y == y-1) && akk.one_lastDirection != 1){
                 if (one_pits[akk.one_x][akk.one_y+1]){
-                    options.add(new Frame(0, 0, akk.two_x, akk.two_y, akk, 3));
+                    options.add(new Frame(0, 0, akk.two_x, akk.two_y, akk, 3, 3, akk.two_lastDirection));
                 }else{
-                    options.add(new Frame(akk.one_x, akk.one_y+1, akk.two_x, akk.two_y, akk, 3));
+                    options.add(new Frame(akk.one_x, akk.one_y+1, akk.two_x, akk.two_y, akk, 3, 3, akk.two_lastDirection));
                 }
-            }else if (!two_wall_h[akk.two_x][akk.two_y] && !(akk.two_x == x-1 && akk.two_y == y-1)){
+            }else if (!two_wall_h[akk.two_x][akk.two_y] && !(akk.two_x == x-1 && akk.two_y == y-1) && akk.two_lastDirection != 1){
                 if (two_pits[akk.two_x][akk.two_y+1]){
-                    options.add(new Frame(akk.one_x, akk.one_y, 0, 0, akk, 3));
+                    options.add(new Frame(akk.one_x, akk.one_y, 0, 0, akk, 3, akk.one_lastDirection, 3));
                 }else{
-                    options.add(new Frame(akk.one_x, akk.one_y, akk.two_x, akk.two_y+1, akk, 3));
+                    options.add(new Frame(akk.one_x, akk.one_y, akk.two_x, akk.two_y+1, akk, 3, akk.one_lastDirection, 3));
                 }
             }
         }
@@ -136,41 +135,41 @@ public class SyncronDixtra {
             if (akk.one_y > 0 && akk.two_y > 0){
                 if (!one_wall_h[akk.one_x][akk.one_y-1] && !two_wall_h[akk.two_x][akk.two_y-1]){
                     if (one_pits[akk.one_x][akk.one_y-1] && two_pits[akk.two_x][akk.two_y-1]){
-                        options.add(new Frame(0, 0, 0, 0, akk, 1));
+                        options.add(new Frame(0, 0, 0, 0, akk, 1, 1, 1));
                     }else if (one_pits[akk.one_x][akk.one_y-1]){
-                        options.add(new Frame(0, 0, akk.two_x, akk.two_y-1, akk, 1));
+                        options.add(new Frame(0, 0, akk.two_x, akk.two_y-1, akk, 1, 1, 1));
                     }else if (two_pits[akk.two_x][akk.two_y-1]){
-                        options.add(new Frame(akk.one_x, akk.one_y-1, 0, 0, akk, 1));
+                        options.add(new Frame(akk.one_x, akk.one_y-1, 0, 0, akk, 1, 1, 1));
                     }else {
-                        options.add(new Frame(akk.one_x, akk.one_y-1, akk.two_x, akk.two_y-1, akk, 1));
+                        options.add(new Frame(akk.one_x, akk.one_y-1, akk.two_x, akk.two_y-1, akk, 1, 1, 1));
                     }
-                }else if (!one_wall_h[akk.one_x][akk.one_y-1] && !(akk.one_x == x-1 && akk.one_y == y-1)){
+                }else if (!one_wall_h[akk.one_x][akk.one_y-1] && !(akk.one_x == x-1 && akk.one_y == y-1) && akk.one_lastDirection != 3){
                     if (one_pits[akk.one_x][akk.one_y-1]){
-                        options.add(new Frame(0, 0, akk.two_x, akk.two_y, akk, 1));
+                        options.add(new Frame(0, 0, akk.two_x, akk.two_y, akk, 1, 1, akk.two_lastDirection));
                     }else {
-                        options.add(new Frame(akk.one_x, akk.one_y-1, akk.two_x, akk.two_y, akk, 1));
+                        options.add(new Frame(akk.one_x, akk.one_y-1, akk.two_x, akk.two_y, akk, 1, 1, akk.two_lastDirection));
                     }
-                }else if (!two_wall_h[akk.two_x][akk.two_y-1] && !(akk.two_x == x-1 && akk.two_y == y-1)){
+                }else if (!two_wall_h[akk.two_x][akk.two_y-1] && !(akk.two_x == x-1 && akk.two_y == y-1) && akk.two_lastDirection != 3){
                     if (two_pits[akk.two_x][akk.two_y-1]){
-                        options.add(new Frame(akk.one_x, akk.one_y, 0, 0, akk, 1));
+                        options.add(new Frame(akk.one_x, akk.one_y, 0, 0, akk, 1, akk.one_lastDirection, 1));
                     }else {
-                        options.add(new Frame(akk.one_x, akk.one_y, akk.two_x, akk.two_y-1, akk, 1));
+                        options.add(new Frame(akk.one_x, akk.one_y, akk.two_x, akk.two_y-1, akk, 1, akk.one_lastDirection, 1));
                     }
                 }
             }else if (akk.one_y > 0){
-                if (!one_wall_h[akk.one_x][akk.one_y-1] && !(akk.one_x == x-1 && akk.one_y == y-1)){
+                if (!one_wall_h[akk.one_x][akk.one_y-1] && !(akk.one_x == x-1 && akk.one_y == y-1) && akk.one_lastDirection != 3){
                     if (one_pits[akk.one_x][akk.one_y-1]){
-                        options.add(new Frame(0, 0, akk.two_x, akk.two_y, akk, 1));
+                        options.add(new Frame(0, 0, akk.two_x, akk.two_y, akk, 1, 1, akk.two_lastDirection));
                     }else {
-                        options.add(new Frame(akk.one_x, akk.one_y-1, akk.two_x, akk.two_y, akk, 1));
+                        options.add(new Frame(akk.one_x, akk.one_y-1, akk.two_x, akk.two_y, akk, 1, 1, akk.two_lastDirection));
                     }
                 }
             }else if (akk.two_y > 0){
-                if (!two_wall_h[akk.two_x][akk.two_y-1] && !(akk.two_x == x-1 && akk.two_y == y-1)){
+                if (!two_wall_h[akk.two_x][akk.two_y-1] && !(akk.two_x == x-1 && akk.two_y == y-1) && akk.two_lastDirection != 3){
                     if (two_pits[akk.two_x][akk.two_y-1]){
-                        options.add(new Frame(akk.one_x, akk.one_y, 0, 0, akk, 1));
+                        options.add(new Frame(akk.one_x, akk.one_y, 0, 0, akk, 1, akk.one_lastDirection, 1));
                     }else {
-                        options.add(new Frame(akk.one_x, akk.one_y, akk.two_x, akk.two_y-1, akk, 1));
+                        options.add(new Frame(akk.one_x, akk.one_y, akk.two_x, akk.two_y-1, akk, 1, akk.one_lastDirection, 1));
                     }
                 }
             }
@@ -181,7 +180,7 @@ public class SyncronDixtra {
 
     public char[] findInstructions(int one_x, int one_y, int two_x, int two_y){
         
-        Frame akkFrame = new Frame(one_x, one_y, two_x, two_y, null, 0);
+        Frame akkFrame = new Frame(one_x, one_y, two_x, two_y, null, 0, 0, 0);
 
         Queue<Frame> options = new LinkedList<>();
         options.add(akkFrame);

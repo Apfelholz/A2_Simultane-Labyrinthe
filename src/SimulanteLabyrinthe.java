@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 public class SimulanteLabyrinthe {
     public static void main(String[] args) throws Exception {
         String dateipfad = args[0];
