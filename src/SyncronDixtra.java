@@ -179,7 +179,7 @@ public class SyncronDixtra {
         return options;
     }
 
-    public String[] findInstructions(int one_x, int one_y, int two_x, int two_y){
+    public char[] findInstructions(int one_x, int one_y, int two_x, int two_y){
         
         Frame akkFrame = new Frame(one_x, one_y, two_x, two_y, null, 0);
 
@@ -197,19 +197,23 @@ public class SyncronDixtra {
         }
     }
 
-    private String[] getInstructions(Frame f){
-        ArrayList<String> Instructions = new ArrayList<>();
+    private char[] getInstructions(Frame f){
+        ArrayList<Character> Instructions = new ArrayList<>();
         while(true){
             if (f.lastDirection == 0){
-                return Instructions.toArray(new String[0]);
+                char[] result = new char[Instructions.size()];
+                for (int i = 0; i < Instructions.size(); i++) {
+                    result[i] = Instructions.get(i);
+                }
+                return result;
             }else if (f.lastDirection == 1){
-                Instructions.addLast("^");
+                Instructions.add('^');
             }else if (f.lastDirection == 2){
-                Instructions.addLast("->");
+                Instructions.add('>');
             }else if (f.lastDirection == 3){
-                Instructions.addLast("|");
+                Instructions.add('|');
             }else if (f.lastDirection == 4){
-                Instructions.addLast("<-");
+                Instructions.add('<');
             }
             f = f.dad;
         }

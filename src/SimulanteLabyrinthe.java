@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 public class SimulanteLabyrinthe {
     public static void main(String[] args) throws Exception {
-        String dateipfad = "data\\labyrinthe01.txt";
+        String dateipfad = args[0];
 
         int x = 0;
         int y = 0;
@@ -39,9 +39,13 @@ public class SimulanteLabyrinthe {
         }
 
         SyncronDixtra syncronDixtra = new SyncronDixtra(one_wall_v, one_wall_h, one_pits, two_wall_v, two_wall_h, two_pits, x, y);
-        String[] Instructions = syncronDixtra.findInstructions(0, 0, 0, 0);
+        char[] instructions = syncronDixtra.findInstructions(0, 0, 0, 0);
 
-        System.out.println(Arrays.toString(Instructions));
+        for (char c : instructions){
+            System.out.print(c);
+        }
+        System.out.println("");
+        System.out.println(instructions.length);
     }
 
     private static boolean[][] formatInputData_pits(int[][] rawData, int x, int y){
