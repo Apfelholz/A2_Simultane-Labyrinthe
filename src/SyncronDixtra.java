@@ -13,8 +13,6 @@ public class SyncronDixtra {
     int x;
     int y;
 
-    Frame gaph;
-
     public SyncronDixtra(boolean[][] one_wall_v, boolean[][] one_wall_h, boolean[][] one_pits, boolean[][] two_wall_v, boolean[][] two_wall_h, boolean[][] two_pits, int x, int y){
         this.one_wall_v = one_wall_v;
         this.one_wall_h = one_wall_h;
@@ -93,7 +91,7 @@ public class SyncronDixtra {
                     }
                 }
             }else if(akk.two_x > 0){
-                if(!two_wall_v[akk.two_x-1][akk.two_y] && !(akk.two_x == x-1 && akk.two_y == y-1)  && akk.two_lastDirection != 2){
+                if(!two_wall_v[akk.two_x-1][akk.two_y] && !(akk.two_x == x-1 && akk.two_y == y-1) && akk.two_lastDirection != 2){
                     if (two_pits[akk.two_x-1][akk.two_y]){
                         options.add(new Frame(akk.one_x, akk.one_y, 0, 0, akk, 4, akk.one_lastDirection, 4));
                     }else {
@@ -202,7 +200,7 @@ public class SyncronDixtra {
             if (f.lastDirection == 0){
                 char[] result = new char[Instructions.size()];
                 for (int i = 0; i < Instructions.size(); i++) {
-                    result[i] = Instructions.get(i);
+                    result[result.length-1-i] = Instructions.get(i);
                 }
                 return result;
             }else if (f.lastDirection == 1){

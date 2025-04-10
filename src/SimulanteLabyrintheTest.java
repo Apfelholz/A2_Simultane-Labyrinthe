@@ -10,7 +10,7 @@ public class SimulanteLabyrintheTest{
         for (String l : output){
             System.out.println(l);
         }
-        char[] instructions = new char[] {'|', '|', '>', '>'};
+        char[] instructions = new char[] {'>', '>', '|', '|'};
         int length = 4;
         assertEquals(length, Integer.parseInt(output[1].strip()));
         assertArrayEquals(instructions, output[0].strip().toCharArray());
