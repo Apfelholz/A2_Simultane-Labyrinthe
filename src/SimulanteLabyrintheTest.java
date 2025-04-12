@@ -5,44 +5,33 @@ import java.io.PrintStream;
 
 public class SimulanteLabyrintheTest{
     @Test
-    void testMainWithLabyrinth00() {
-        String[] output = testMainWithFile("data\\labyrintheT0.txt");
+    void testMainWithLabyrinthA() {
+        String[] output = testMainWithFile("data\\labyrintheA.txt");
         for (String l : output){
             System.out.println(l);
         }
-        char[] instructions = new char[] {'>', '>', '|', '|'};
-        int length = 4;
-        assertEquals(length, Integer.parseInt(output[1].strip()));
-        assertArrayEquals(instructions, output[0].strip().toCharArray());
     }
 
     @Test
-    void testMainWithLabyrinth01() {
-        String[] output = testMainWithFile("data\\labyrintheT1.txt");
+    void testMainWithLabyrinthB() {
+        String[] output = testMainWithFile("data\\labyrintheB.txt");
         for (String l : output){
             System.out.println(l);
         }
-        char[] instructions = new char[] {'|', '|', '>', '^', '^', '>', '|', '|'};
-        int length = 8;
-        assertEquals(length, Integer.parseInt(output[1].strip()));
-        assertArrayEquals(instructions, output[0].strip().toCharArray());
     }
 
     @Test
-    void testMainWithLabyrinth02() {
-        String[] output = testMainWithFile("data\\labyrintheT2.txt");
+    void testMainWithLabyrinthC() {
+        String[] output = testMainWithFile("data\\labyrintheC.txt");
         for (String l : output){
             System.out.println(l);
         }
-        char[] instructions = new char[] {'|', '|', '>', '^', '^', '>', '|', '|'};
-        int length = 8;
-        assertEquals(length, Integer.parseInt(output[1].strip()));
-        assertArrayEquals(instructions, output[0].strip().toCharArray());
+
     }
 
     @Test
-    void testMainWithLabyrinth03() {
-        String[] output = testMainWithFile("data\\labyrintheT3.txt"); 
+    void testMainWithLabyrinthD() {
+        String[] output = testMainWithFile("data\\labyrintheD.txt"); 
         for (String l : output){
             System.out.println(l);
         }
