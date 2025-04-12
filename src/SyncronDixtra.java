@@ -329,12 +329,12 @@ public class SyncronDixtra {
         ArrayList<Character> Instructions = new ArrayList<>();
         while(true){
             if (f.lastDirection == 0){
-                if (!successfull){
-                    Instructions.addLast('X');
-                }
-                char[] result = new char[Instructions.size()];
-                for (int i = 0; i < Instructions.size(); i++) {
+                char[] result = new char[Instructions.size()+1];
+                for (int i = 1; i < Instructions.size(); i++) {
                     result[result.length-1-i] = Instructions.get(i);
+                }
+                if (!successfull){
+                    result[result.length-1] = 'X';
                 }
                 return result;
             }else if (f.lastDirection == 1){

@@ -39,11 +39,37 @@ public class SimulanteLabyrinthe {
         SyncronDixtra syncronDixtra = new SyncronDixtra(one_wall_v, one_wall_h, one_pits, two_wall_v, two_wall_h, two_pits, x, y);
         char[] instructions = syncronDixtra.findInstructions(0, 0, 0, 0);
 
-        for (char c : instructions){
-            System.out.print(c);
+        System.out.println("---------------------------------------------------------------------------");
+
+        System.out.println("Beispiel: " + dateipfad);
+
+        System.out.println(" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ");
+
+        if (instructions.length > 0 && instructions[instructions.length - 1] != 'X') {
+            System.out.println("Es wurde eine Loesung gefunden");
+            System.out.println("Folgende Anweisungsfolge ist die kuerzeste moegliche");
+            for (char c : instructions) {
+                if (c != '\0') {
+                    System.out.print(c);
+                }
+            }
+            System.out.println("");
+            System.out.println("(^:hoch ; >:rechts ; |:runter ; <:links)");
+            System.out.println("Die Anweisungsfolge hat eine Laenge von: " + instructions.length);
+        } else {
+            System.out.println("Es konnte keine Loesung gefunden werden.");
+            System.out.println("Folgende Anweisungsfolge ist die best moegliche");
+            for (char c : instructions) {
+                if (c != '\0') {
+                    System.out.print(c);
+                }
+            }
+            System.out.println("");
+            System.out.println("(^:hoch ; >:rechts ; |:runter ; <:links)");
+            System.out.println("Die Anweisungsfolge hat eine Laenge von: " + instructions.length);
         }
-        System.out.println("");
-        System.out.println(instructions.length);
+
+        System.out.println("---------------------------------------------------------------------------");
     }
 
     private static boolean[][] formatInputData_pits(int[][] rawData, int x, int y){
