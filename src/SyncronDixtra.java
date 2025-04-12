@@ -300,9 +300,9 @@ public class SyncronDixtra {
         return options;
     }
 
-    public char[] findInstructions(int one_x, int one_y, int two_x, int two_y){
+    public char[] findInstructions(int s_one_x, int s_one_y, int s_two_x, int s_two_y, int f_one_x, int f_one_y, int f_two_x, int f_two_y){
         
-        Frame akkFrame = new Frame(one_x, one_y, two_x, two_y, null, 0, 0, 0);
+        Frame akkFrame = new Frame(s_one_x, s_one_y, s_two_x, s_two_y, null, 0, 0, 0);
 
         Frame lastFrame;
 
@@ -317,7 +317,7 @@ public class SyncronDixtra {
                 return getInstructions(lastFrame, false);
             }
             
-            if(akkFrame.one_x == x-1 && akkFrame.one_y == y-1 && akkFrame.two_x == x-1 && akkFrame.two_y == y-1){
+            if(akkFrame.one_x == f_one_x && akkFrame.one_y == f_one_y && akkFrame.two_x == f_two_x && akkFrame.two_y == f_two_y){
                 return getInstructions(akkFrame, true);
             }
 
@@ -330,8 +330,8 @@ public class SyncronDixtra {
         while(true){
             if (f.lastDirection == 0){
                 char[] result = new char[Instructions.size()+1];
-                for (int i = 1; i < Instructions.size(); i++) {
-                    result[result.length-1-i] = Instructions.get(i);
+                for (int i = 0; i < Instructions.size(); i++) {
+                    result[result.length-2-i] = Instructions.get(i);
                 }
                 if (!successfull){
                     result[result.length-1] = 'X';
