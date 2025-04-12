@@ -17,9 +17,11 @@ public class SimulanteLabyrinthe {
         int one_numberOfPits = FileReaderx.readLineToInt(dateipfad, 1+(y-1)+y-1+1);
 
         boolean[][] one_pits = new boolean[x][y];
+        int[][][] one_pitCords = null;
 
         if (one_numberOfPits > 0){
             one_pits = formatInputData_pits(FileReaderx.readToInt2DArray(dateipfad, 1+(y-1)+y-1+1+1, 1+(y-1)+y-1+1+one_numberOfPits), x, y);
+            one_pitCords = processPitCoordinates(dateipfad, x, y, one_numberOfPits, 1 + (y - 1) + y - 1 + 1 + 1);
         }
 
         boolean[][] two_wall_v = new boolean[x][y];
@@ -31,9 +33,11 @@ public class SimulanteLabyrinthe {
         int two_numberOfPits = FileReaderx.readLineToInt(dateipfad, 1+(y-1)+y-1+1+one_numberOfPits+y+y-1+1);
         
         boolean[][] two_pits = new boolean[x][y];
+        int[][][] two_pitCords = null;
 
         if(two_numberOfPits > 0){
             two_pits = formatInputData_pits(FileReaderx.readToInt2DArray(dateipfad, 1+(y-1)+y-1+1+one_numberOfPits+y+y-1+1+1, 1+(y-1)+y-1+1+one_numberOfPits+y+y-1+1+two_numberOfPits), x, y);
+            two_pitCords = processPitCoordinates(dateipfad, x, y, two_numberOfPits, 1 + (y - 1) + y - 1 + 1 + one_numberOfPits + y + y - 1 + 1 + 1);
         }
 
         int[][] starts = new int[][] {{0,0},{0,0},{x-1,y-1},{x-1,y-1}};
@@ -42,7 +46,7 @@ public class SimulanteLabyrinthe {
             starts = FileReaderx.readToInt2DArray(dateipfad, 1+(y-1)+y-1+1+one_numberOfPits+y+y-1+1+two_numberOfPits+1, 1+(y-1)+y-1+1+one_numberOfPits+y+y-1+1+two_numberOfPits+4);
         }
 
-        SyncronDixtra syncronDixtra = new SyncronDixtra(one_wall_v, one_wall_h, one_pits, two_wall_v, two_wall_h, two_pits, x, y);
+        SyncronDixtra syncronDixtra = new SyncronDixtra(one_wall_v, one_wall_h, one_pits, two_wall_v, two_wall_h, two_pits, x, y, one_pitCords, two_pitCords);
         char[] instructions = syncronDixtra.findInstructions(starts[0][0], starts[0][1], starts[1][0], starts[1][1], starts[2][0], starts[2][1], starts[3][0], starts[3][1]);
 
         System.out.println("---------------------------------------------------------------------------");
@@ -124,5 +128,20 @@ public class SimulanteLabyrinthe {
         }
 
         return wall_h;
+    }
+
+    private static int[][][] processPitCoordinates(String dateipfad, int x, int y, int numberOfPits, int startLine) {
+        int[][][] pitCords = new int[x][y][2];
+    
+        if (FileReaderx.readToInt2DArray(dateipfad, startLine, startLine + numberOfPits)[0].length > 2) {
+            int[][] lines = FileReaderx.readToInt2DArray(dateipfad, startLine, startLine + numberOfPits);
+    
+            for (int[] i : lines) {
+                pitCords[i[0]][i[1]][0] = i[2];
+                pitCords[i[0]][i[1]][1] = i[3];
+            }
+        }
+    
+        return pitCords;
     }
 }
