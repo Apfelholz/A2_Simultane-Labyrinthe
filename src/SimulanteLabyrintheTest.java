@@ -38,6 +38,30 @@ public class SimulanteLabyrintheTest{
     }
 
     @Test
+    void testMainWithLabyrinthE() {
+        String[] output = testMainWithFile("data\\labyrintheE.txt");
+        for (String l : output){
+            System.out.println(l);
+        }
+    }
+
+    @Test
+    void testMainWithLabyrinthF() {
+        String[] output = testMainWithFile("data\\labyrintheF.txt");
+        for (String l : output){
+            System.out.println(l);
+        }
+    }
+
+    @Test
+    void testMainWithLabyrinthG() {
+        String[] output = testMainWithFile("data\\labyrintheG.txt");
+        for (String l : output){
+            System.out.println(l);
+        }
+    }
+
+    @Test
     void testMainWithLabyrinth0() {
         String[] output = testMainWithFile("data\\labyrinthe0.txt"); 
         for (String l : output){
@@ -141,7 +165,7 @@ public class SimulanteLabyrintheTest{
 
         // Call the Python script with the required arguments
         try {
-            String pathSequence = lines[0].strip(); // Extract the path sequence
+            String pathSequence = lines[5].strip(); // Extract the path sequence
             ProcessBuilder pb = new ProcessBuilder(
                 "py", 
                 "D:\\Documents\\Programiren\\Informatik Wettbewerb\\BWINF 2024\\Runde 2\\maze_visualization\\maze_visualization.py", 
