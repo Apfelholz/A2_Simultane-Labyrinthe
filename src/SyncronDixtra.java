@@ -304,28 +304,34 @@ public class SyncronDixtra {
         
         Frame akkFrame = new Frame(one_x, one_y, two_x, two_y, null, 0, 0, 0);
 
+        Frame lastFrame;
+
         Queue<Frame> options = new LinkedList<>();
         options.add(akkFrame);
 
         while(true){
+            lastFrame = akkFrame;
             akkFrame = options.poll();
 
             if (akkFrame == null){
-                return new char[] {'X'};
+                return getInstructions(lastFrame, false);
             }
             
             if(akkFrame.one_x == x-1 && akkFrame.one_y == y-1 && akkFrame.two_x == x-1 && akkFrame.two_y == y-1){
-                return getInstructions(akkFrame);
+                return getInstructions(akkFrame, true);
             }
 
             options.addAll(getOptions(akkFrame));
         }
     }
 
-    private char[] getInstructions(Frame f){
+    private char[] getInstructions(Frame f, boolean successfull){
         ArrayList<Character> Instructions = new ArrayList<>();
         while(true){
             if (f.lastDirection == 0){
+                if (!successfull){
+                    Instructions.addLast('X');
+                }
                 char[] result = new char[Instructions.size()];
                 for (int i = 0; i < Instructions.size(); i++) {
                     result[result.length-1-i] = Instructions.get(i);
