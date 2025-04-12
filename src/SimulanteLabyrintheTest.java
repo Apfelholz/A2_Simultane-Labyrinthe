@@ -6,7 +6,7 @@ import java.io.PrintStream;
 public class SimulanteLabyrintheTest{
     @Test
     void testMainWithLabyrinth00() {
-        String[] output = testMainWithFile("data\\labyrinthe00.txt");
+        String[] output = testMainWithFile("data\\labyrintheT0.txt");
         for (String l : output){
             System.out.println(l);
         }
@@ -18,7 +18,7 @@ public class SimulanteLabyrintheTest{
 
     @Test
     void testMainWithLabyrinth01() {
-        String[] output = testMainWithFile("data\\labyrinthe01.txt");
+        String[] output = testMainWithFile("data\\labyrintheT1.txt");
         for (String l : output){
             System.out.println(l);
         }
@@ -30,7 +30,7 @@ public class SimulanteLabyrintheTest{
 
     @Test
     void testMainWithLabyrinth02() {
-        String[] output = testMainWithFile("data\\labyrinthe02.txt");
+        String[] output = testMainWithFile("data\\labyrintheT2.txt");
         for (String l : output){
             System.out.println(l);
         }
@@ -42,7 +42,7 @@ public class SimulanteLabyrintheTest{
 
     @Test
     void testMainWithLabyrinth03() {
-        String[] output = testMainWithFile("data\\labyrinthe03.txt"); 
+        String[] output = testMainWithFile("data\\labyrintheT3.txt"); 
         for (String l : output){
             System.out.println(l);
         }
