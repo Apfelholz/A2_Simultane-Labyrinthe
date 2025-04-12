@@ -309,6 +309,10 @@ public class SyncronDixtra {
 
         while(true){
             akkFrame = options.poll();
+
+            if (akkFrame == null){
+                return new char[] {'X'};
+            }
             
             if(akkFrame.one_x == x-1 && akkFrame.one_y == y-1 && akkFrame.two_x == x-1 && akkFrame.two_y == y-1){
                 return getInstructions(akkFrame);

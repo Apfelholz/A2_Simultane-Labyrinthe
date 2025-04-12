@@ -154,8 +154,8 @@ public class SimulanteLabyrintheTest{
         try {
             String pathSequence = lines[0].strip(); // Extract the path sequence
             ProcessBuilder pb = new ProcessBuilder(
-                "python", 
-                "maze_visualization.py", 
+                "py", 
+                "D:\\Documents\\Programiren\\Informatik Wettbewerb\\BWINF 2024\\Runde 2\\maze_visualization\\maze_visualization.py", 
                 filePath, 
                 pathSequence
             );
