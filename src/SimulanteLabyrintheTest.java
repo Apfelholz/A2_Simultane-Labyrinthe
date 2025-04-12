@@ -41,6 +41,14 @@ public class SimulanteLabyrintheTest{
     }
 
     @Test
+    void testMainWithLabyrinth03() {
+        String[] output = testMainWithFile("data\\labyrinthe03.txt"); 
+        for (String l : output){
+            System.out.println(l);
+        }
+    }
+
+    @Test
     void testMainWithLabyrinth0() {
         String[] output = testMainWithFile("data\\labyrinthe0.txt"); 
         for (String l : output){
@@ -141,6 +149,24 @@ public class SimulanteLabyrintheTest{
         String output = outContent.toString();
         assertFalse(output.isEmpty(), "Output should not be empty for file: " + filePath);
         String[] lines = output.split("\n");
+
+        // Call the Python script with the required arguments
+        try {
+            String pathSequence = lines[0].strip(); // Extract the path sequence
+            ProcessBuilder pb = new ProcessBuilder(
+                "python", 
+                "maze_visualization.py", 
+                filePath, 
+                pathSequence
+            );
+            pb.inheritIO(); // Pass output to the console
+            Process process = pb.start();
+            int exitCode = process.waitFor();
+            assertEquals(0, exitCode, "Python script exited with an error.");
+        } catch (Exception e) {
+            fail("Failed to execute maze_visualization.py: " + e.getMessage());
+        }
+
         return lines;
     }
 }
