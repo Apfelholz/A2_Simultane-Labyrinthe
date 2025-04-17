@@ -1,13 +1,13 @@
 import java.util.Arrays;
 import java.util.Objects;
 
-public class Frame {
+public class FramePlates {
     int one_x;
     int one_y;
     int two_x;
     int two_y;
 
-    Frame dad;
+    FramePlates dad;
     int lastDirection;
     int one_lastDirection;
     int two_lastDirection;
@@ -23,7 +23,7 @@ public class Frame {
     boolean[][] one_plates;
     int[][][] one_plate_cords_action;
 
-    public Frame(int one_x, int one_y, int two_x, int two_y, Frame dad, int direction, int one_direction, int two_direction, boolean[][] one_wall_v, boolean[][] one_wall_h, boolean[][] two_wall_v, boolean[][] two_wall_h, boolean[][] two_plates, int[][][] two_plate_cords_action, boolean[][] one_plates, int[][][] one_plate_cords_action){
+    public FramePlates(int one_x, int one_y, int two_x, int two_y, FramePlates dad, int direction, int one_direction, int two_direction, boolean[][] one_wall_v, boolean[][] one_wall_h, boolean[][] two_wall_v, boolean[][] two_wall_h, boolean[][] two_plates, int[][][] two_plate_cords_action, boolean[][] one_plates, int[][][] one_plate_cords_action){
         this.one_x = one_x;
         this.one_y = one_y;
         this.two_x = two_x;
@@ -95,7 +95,7 @@ public class Frame {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
 
-        Frame other = (Frame) obj;
+        FramePlates other = (FramePlates) obj;
 
         return one_x == other.one_x &&
                one_y == other.one_y &&
