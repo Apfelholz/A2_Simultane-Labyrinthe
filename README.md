@@ -39,17 +39,17 @@ Thare follow 4 optional lines taht difine the starting and end positions in the 
 <endx2> <endy2>
 ```
 
-After that, an optional line follows that specifies the number of plaits in the first maze. In the lines after that, the individual plaits are defined.
+After that, an optional line follows that specifies the number of plaits in the mazes. In the lines after that, the individual plaits are defined.
 
 Each plait is described in a single line with the following syntax:
 ```
 <maze-source> <x1> <y1> <maze-target> <x2> <y2> <action>
 ```
-- `<maze-source>`: The maze in which the plait is located.
+- `<maze-source>`: The maze in which the plait is located. `(1/2)`
 - `<x1> <y1>`: The coordinates of the plait in the source maze.
-- `<maze-target>`: The maze where the plait causes a change.
+- `<maze-target>`: The maze where the plait causes a change. `(1/2)`
 - `<x2> <y2>`: The coordinates in the target maze where the change occurs.
-- `<action>`: The action that happens at the specified position in the target maze.
+- `<action>`: The action that happens at the specified position in the target maze. `1` -> make the target empty `2` -> make a vertical wall on that field `3` -> make a horizontal wall on that field
 
 If no plaits are present, this section is skipped.
 
