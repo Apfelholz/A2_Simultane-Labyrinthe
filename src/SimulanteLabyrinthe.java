@@ -52,30 +52,30 @@ public class SimulanteLabyrinthe {
             starts = FileReaderx.readToInt2DArray(dateipfad, 1+(y-1)+y-1+1+one_numberOfPits+y+y-1+1+two_numberOfPits+1, 1+(y-1)+y-1+1+one_numberOfPits+y+y-1+1+two_numberOfPits+4);
         }
 
-        boolean[][] one_plates = new boolean[x][y];
-        boolean[][] two_plates = new boolean[x][y];
-        
-        int[][][] one_plate_cords_action = new int[x][y][4];
-        int[][][] two_plate_cords_action = new int[x][y][4];
-
-        if (FileReaderx.readLineToInt(dateipfad, 1 + (y - 1) + y - 1 + 1 + one_numberOfPits + y + y - 1 + 1 + two_numberOfPits + 5) > 0) {
-
-            int plates = FileReaderx.readLineToInt(dateipfad, 1 + (y - 1) + y - 1 + 1 + one_numberOfPits + y + y - 1 + 1 + two_numberOfPits + 5);
-        
-            int[][] lines = FileReaderx.readToInt2DArray(dateipfad, 1 + (y - 1) + y - 1 + 1 + one_numberOfPits + y + y - 1 + 1 + two_numberOfPits + 5 + 1, 1 + (y - 1) + y - 1 + 1 + one_numberOfPits + y + y - 1 + 1 + two_numberOfPits + 5 + plates);
-        
-            for (int[] line : lines) {
-                if (line[0] == 1) {
-                    formatPlates(line, one_plates, one_plate_cords_action);
-                } else if (line[0] == 2) {
-                    formatPlates(line, two_plates, two_plate_cords_action);
-                }
-            }
-        }
-
         char[] instructions = null;
         
         if (version == "plates"){
+            boolean[][] one_plates = new boolean[x][y];
+            boolean[][] two_plates = new boolean[x][y];
+            
+            int[][][] one_plate_cords_action = new int[x][y][4];
+            int[][][] two_plate_cords_action = new int[x][y][4];
+
+
+            if (FileReaderx.readLineToInt(dateipfad, 1 + (y - 1) + y - 1 + 1 + one_numberOfPits + y + y - 1 + 1 + two_numberOfPits + 5) > 0) {
+
+                int plates = FileReaderx.readLineToInt(dateipfad, 1 + (y - 1) + y - 1 + 1 + one_numberOfPits + y + y - 1 + 1 + two_numberOfPits + 5);
+            
+                int[][] lines = FileReaderx.readToInt2DArray(dateipfad, 1 + (y - 1) + y - 1 + 1 + one_numberOfPits + y + y - 1 + 1 + two_numberOfPits + 5 + 1, 1 + (y - 1) + y - 1 + 1 + one_numberOfPits + y + y - 1 + 1 + two_numberOfPits + 5 + plates);
+            
+                for (int[] line : lines) {
+                    if (line[0] == 1) {
+                        formatPlates(line, one_plates, one_plate_cords_action);
+                    } else if (line[0] == 2) {
+                        formatPlates(line, two_plates, two_plate_cords_action);
+                    }
+                }
+            }
             SyncronDixtraPlates syncronDixtra = new SyncronDixtraPlates(one_wall_v, one_wall_h, one_pits, two_wall_v, two_wall_h, two_pits, x, y, one_pitCords, two_pitCords, one_plates, two_plates, one_plate_cords_action, two_plate_cords_action);
             instructions = syncronDixtra.findInstructions(starts[0][0], starts[0][1], starts[1][0], starts[1][1], starts[2][0], starts[2][1], starts[3][0], starts[3][1]);
         }else{
