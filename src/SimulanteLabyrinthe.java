@@ -1,6 +1,12 @@
 public class SimulanteLabyrinthe {
     public static void main(String[] args) throws Exception {
         String dateipfad = args[0];
+        String version;
+        if (args.length == 2){
+            version = args[1];
+        }else {
+            version = "non";
+        }
 
         int x = 0;
         int y = 0;
@@ -66,10 +72,16 @@ public class SimulanteLabyrinthe {
                 }
             }
         }
-        
 
-        SyncronDixtraPlates syncronDixtra = new SyncronDixtraPlates(one_wall_v, one_wall_h, one_pits, two_wall_v, two_wall_h, two_pits, x, y, one_pitCords, two_pitCords, one_plates, two_plates, one_plate_cords_action, two_plate_cords_action);
-        char[] instructions = syncronDixtra.findInstructions(starts[0][0], starts[0][1], starts[1][0], starts[1][1], starts[2][0], starts[2][1], starts[3][0], starts[3][1]);
+        char[] instructions = null;
+        
+        if (version == "plates"){
+            SyncronDixtraPlates syncronDixtra = new SyncronDixtraPlates(one_wall_v, one_wall_h, one_pits, two_wall_v, two_wall_h, two_pits, x, y, one_pitCords, two_pitCords, one_plates, two_plates, one_plate_cords_action, two_plate_cords_action);
+            instructions = syncronDixtra.findInstructions(starts[0][0], starts[0][1], starts[1][0], starts[1][1], starts[2][0], starts[2][1], starts[3][0], starts[3][1]);
+        }else{
+            SyncronDixtra syncronDixtra = new SyncronDixtra(one_wall_v, one_wall_h, one_pits, two_wall_v, two_wall_h, two_pits, x, y, one_pitCords, two_pitCords);
+            instructions = syncronDixtra.findInstructions(starts[0][0], starts[0][1], starts[1][0], starts[1][1], starts[2][0], starts[2][1], starts[3][0], starts[3][1]);
+        } 
 
         System.out.println("---------------------------------------------------------------------------");
 
