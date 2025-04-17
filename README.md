@@ -30,6 +30,15 @@ The input is a `.txt` file that describes the two labyrinths. The structure is a
 
 The second labyrinth follows the same structure, starting with the vertical wall definitions.
 
+Thare follow 4 optional lines taht difine the starting and end positions in the diffrent mazes.
+
+```
+<startx1> <starty1>
+<startx2> <starty2>
+<endx1> <endy1>
+<endx2> <endy2>
+```
+
 After that, an optional line follows that specifies the number of plaits in the first maze. In the lines after that, the individual plaits are defined.
 
 Each plait is described in a single line with the following syntax:
