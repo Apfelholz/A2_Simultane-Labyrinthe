@@ -86,6 +86,14 @@ public class SimulanteLabyrintheTest{
         }
     }
 
+    @Test
+    void testMainWithLabyrinthK() {
+        String[] output = testMainWithFile("data\\labyrintheK.txt"); 
+        for (String l : output){
+            System.out.println(l);
+        }
+    }
+
 
     @Test
     void testMainWithLabyrinth0() {
