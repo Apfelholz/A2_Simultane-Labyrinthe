@@ -35,17 +35,43 @@ public class SimulanteLabyrinthe {
         boolean[][] two_pits = new boolean[x][y];
         int[][][] two_pitCords = null;
 
-        if(two_numberOfPits > 0){
+        if (two_numberOfPits > 0){
             two_pits = formatInputData_pits(FileReaderx.readToInt2DArray(dateipfad, 1+(y-1)+y-1+1+one_numberOfPits+y+y-1+1+1, 1+(y-1)+y-1+1+one_numberOfPits+y+y-1+1+two_numberOfPits), x, y);
             two_pitCords = processPitCoordinates(dateipfad, x, y, two_numberOfPits, 1 + (y - 1) + y - 1 + 1 + one_numberOfPits + y + y - 1 + 1 + 1);
         }
 
         int[][] starts = new int[][] {{0,0},{0,0},{x-1,y-1},{x-1,y-1}};
 
-        if(FileReaderx.readToInt2DArray(dateipfad, 1+(y-1)+y-1+1+one_numberOfPits+y+y-1+1+two_numberOfPits+1, 1+(y-1)+y-1+1+one_numberOfPits+y+y-1+1+two_numberOfPits+4).length > 0){
+        if (FileReaderx.readToInt2DArray(dateipfad, 1+(y-1)+y-1+1+one_numberOfPits+y+y-1+1+two_numberOfPits+1, 1+(y-1)+y-1+1+one_numberOfPits+y+y-1+1+two_numberOfPits+4).length > 0){
             starts = FileReaderx.readToInt2DArray(dateipfad, 1+(y-1)+y-1+1+one_numberOfPits+y+y-1+1+two_numberOfPits+1, 1+(y-1)+y-1+1+one_numberOfPits+y+y-1+1+two_numberOfPits+4);
         }
 
+        boolean[][] one_plates = null;
+        boolean[][] two_plates = null;
+        
+        int[][][] one_plate_cords_action = null;
+        int[][][] two_plate_cords_action = null;
+
+        if (FileReaderx.readLineToInt(dateipfad, 1 + (y - 1) + y - 1 + 1 + one_numberOfPits + y + y - 1 + 1 + two_numberOfPits + 5) != 0) {
+
+            int plates = FileReaderx.readLineToInt(dateipfad, 1 + (y - 1) + y - 1 + 1 + one_numberOfPits + y + y - 1 + 1 + two_numberOfPits + 5);
+        
+            one_plates = new boolean[x][y];
+            two_plates = new boolean[x][y];
+        
+            one_plate_cords_action = new int[x][y][4];
+            two_plate_cords_action = new int[x][y][4];
+        
+            int[][] lines = FileReaderx.readToInt2DArray(dateipfad, 1 + (y - 1) + y - 1 + 1 + one_numberOfPits + y + y - 1 + 1 + two_numberOfPits + 5 + 1, 1 + (y - 1) + y - 1 + 1 + one_numberOfPits + y + y - 1 + 1 + two_numberOfPits + 5 + plates);
+        
+            for (int[] line : lines) {
+                if (line[0] == 1) {
+                    formatPlates(line, one_plates, one_plate_cords_action);
+                } else if (line[0] == 2) {
+                    formatPlates(line, two_plates, two_plate_cords_action);
+                }
+            }
+        }
         
 
         SyncronDixtra syncronDixtra = new SyncronDixtra(one_wall_v, one_wall_h, one_pits, two_wall_v, two_wall_h, two_pits, x, y, one_pitCords, two_pitCords);
@@ -145,5 +171,13 @@ public class SimulanteLabyrinthe {
         }
     
         return pitCords;
+    }
+
+    private static void formatPlates(int[] line, boolean[][] plates, int[][][] plateCordsAction) {
+        plates[line[1]][line[2]] = true;
+        plateCordsAction[line[1]][line[2]][0] = line[3];
+        plateCordsAction[line[1]][line[2]][1] = line[4];
+        plateCordsAction[line[1]][line[2]][2] = line[5];
+        plateCordsAction[line[1]][line[2]][3] = line[6];
     }
 }
