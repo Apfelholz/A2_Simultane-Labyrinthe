@@ -546,7 +546,6 @@ public class SimulanteLabyrintheTest{
         // Call the main method with the input file path
         try {
             SimulanteLabyrinthe.main(new String[]{filePath, method});
-            System.out.println("Test with file " + filePath + " ran successfully.");
         } catch (Exception e) {
             fail("Exception thrown: " + e.getMessage());
         } finally {
@@ -561,13 +560,19 @@ public class SimulanteLabyrintheTest{
 
         // Call the Python script with the required arguments
         try {
-            String pathSequence = lines[5].strip(); // Extract the path sequence
+            String pathSequence = lines[5].strip();
+            String optionalArgsStr = "";
+            if (lines.length > 9){
+                String[] optionalArgs = Arrays.copyOfRange(lines, 9, lines.length); // Extract optional lines starting from the 10th line
+                optionalArgsStr = String.join(",", optionalArgs).strip(); // Join them into a single string
+            }
             ProcessBuilder pb = new ProcessBuilder(
                 "py", 
                 "D:\\Documents\\Programiren\\Informatik Wettbewerb\\BWINF 2024\\Runde 2\\maze_visualization\\maze_visualization.py", 
                 filePath, 
                 method,
-                pathSequence
+                pathSequence,
+                optionalArgsStr // Pass optional arguments as a single string
             );
             pb.inheritIO(); // Pass output to the console
             Process process = pb.start();

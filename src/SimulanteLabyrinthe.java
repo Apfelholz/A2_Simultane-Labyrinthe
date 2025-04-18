@@ -53,6 +53,8 @@ public class SimulanteLabyrinthe {
         }
 
         char[] instructions = null;
+
+        Integer[][] usedPlats = null;
         
         if (version == "plates"){
             boolean[][] one_plates = new boolean[x][y];
@@ -78,6 +80,19 @@ public class SimulanteLabyrinthe {
             }
             SyncronDixtraPlates syncronDixtra = new SyncronDixtraPlates(one_wall_v, one_wall_h, one_pits, two_wall_v, two_wall_h, two_pits, x, y, one_pitCords, two_pitCords, one_plates, two_plates, one_plate_cords_action, two_plate_cords_action);
             instructions = syncronDixtra.findInstructions(starts[0][0], starts[0][1], starts[1][0], starts[1][1], starts[2][0], starts[2][1], starts[3][0], starts[3][1]);
+
+            if (instructions.length > 0 && instructions[instructions.length - 1] != 'X'){
+                usedPlats = new Integer[syncronDixtra.akkFrame.usedPlats.size()][7];
+                for (int i = 0; i < syncronDixtra.akkFrame.usedPlats.size(); i++){
+                    usedPlats[i] = syncronDixtra.akkFrame.usedPlats.get(i);
+                }
+            }else {
+                usedPlats = new Integer[syncronDixtra.lastFrame.usedPlats.size()][7];
+                for (int i = 0; i < syncronDixtra.lastFrame.usedPlats.size(); i++){
+                    usedPlats[i] = syncronDixtra.lastFrame.usedPlats.get(i);
+                }
+            }
+
         }else{
             SyncronDixtra syncronDixtra = new SyncronDixtra(one_wall_v, one_wall_h, one_pits, two_wall_v, two_wall_h, two_pits, x, y, one_pitCords, two_pitCords);
             instructions = syncronDixtra.findInstructions(starts[0][0], starts[0][1], starts[1][0], starts[1][1], starts[2][0], starts[2][1], starts[3][0], starts[3][1]);
@@ -114,6 +129,15 @@ public class SimulanteLabyrinthe {
         }
 
         System.out.println("---------------------------------------------------------------------------");
+
+        if (version == "plates"){
+            for (Integer[] p : usedPlats){
+                for (Integer i : p){
+                    System.out.print(i + " ");
+                }
+                System.out.println("");
+            }
+        }
     }
 
     private static boolean[][] formatInputData_pits(int[][] rawData, int x, int y){

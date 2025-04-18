@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -23,7 +24,9 @@ public class FramePlates {
     boolean[][] one_plates;
     int[][][] one_plate_cords_action;
 
-    public FramePlates(int one_x, int one_y, int two_x, int two_y, FramePlates dad, int direction, int one_direction, int two_direction, boolean[][] one_wall_v, boolean[][] one_wall_h, boolean[][] two_wall_v, boolean[][] two_wall_h, boolean[][] two_plates, int[][][] two_plate_cords_action, boolean[][] one_plates, int[][][] one_plate_cords_action){
+    ArrayList<Integer[]> usedPlats;
+
+    public FramePlates(int one_x, int one_y, int two_x, int two_y, FramePlates dad, int direction, int one_direction, int two_direction, boolean[][] one_wall_v, boolean[][] one_wall_h, boolean[][] two_wall_v, boolean[][] two_wall_h, boolean[][] two_plates, int[][][] two_plate_cords_action, boolean[][] one_plates, int[][][] one_plate_cords_action, ArrayList<Integer[]> usedPlats){
         this.one_x = one_x;
         this.one_y = one_y;
         this.two_x = two_x;
@@ -41,6 +44,8 @@ public class FramePlates {
         this.one_plates = one_plates;
         this.one_plate_cords_action = one_plate_cords_action;
 
+        this.usedPlats = new ArrayList<>(usedPlats);
+
         checkForPlates();
     }
 
@@ -50,19 +55,25 @@ public class FramePlates {
                 if (one_plate_cords_action[one_x][one_y][3] == 1) {
                     one_wall_h[one_plate_cords_action[one_x][one_y][1]][one_plate_cords_action[one_x][one_y][2]] = false;
                     one_wall_v[one_plate_cords_action[one_x][one_y][1]][one_plate_cords_action[one_x][one_y][2]] = false;
+                    usedPlats.add(new Integer[] {1, one_x, one_y, 1, one_plate_cords_action[one_x][one_y][1], one_plate_cords_action[one_x][one_y][2], 1});
                 } else if (one_plate_cords_action[one_x][one_y][3] == 2) {
                     one_wall_v[one_plate_cords_action[one_x][one_y][1]][one_plate_cords_action[one_x][one_y][2]] = true;
+                    usedPlats.add(new Integer[] {1, one_x, one_y, 1, one_plate_cords_action[one_x][one_y][1], one_plate_cords_action[one_x][one_y][2], 2});
                 } else if (one_plate_cords_action[one_x][one_y][3] == 3) {
                     one_wall_h[one_plate_cords_action[one_x][one_y][1]][one_plate_cords_action[one_x][one_y][2]] = true;
+                    usedPlats.add(new Integer[] {1, one_x, one_y, 1, one_plate_cords_action[one_x][one_y][1], one_plate_cords_action[one_x][one_y][2], 3});
                 }
             } else if (one_plate_cords_action[one_x][one_y][0] == 2) {
                 if (one_plate_cords_action[one_x][one_y][3] == 1) {
                     two_wall_h[one_plate_cords_action[one_x][one_y][1]][one_plate_cords_action[one_x][one_y][2]] = false;
                     two_wall_v[one_plate_cords_action[one_x][one_y][1]][one_plate_cords_action[one_x][one_y][2]] = false;
+                    usedPlats.add(new Integer[] {1, one_x, one_y, 2, one_plate_cords_action[one_x][one_y][1], one_plate_cords_action[one_x][one_y][2], 1});
                 } else if (one_plate_cords_action[one_x][one_y][3] == 2) {
                     two_wall_v[one_plate_cords_action[one_x][one_y][1]][one_plate_cords_action[one_x][one_y][2]] = true;
+                    usedPlats.add(new Integer[] {1, one_x, one_y, 2, one_plate_cords_action[one_x][one_y][1], one_plate_cords_action[one_x][one_y][2], 2});
                 } else if (one_plate_cords_action[one_x][one_y][3] == 3) {
                     two_wall_h[one_plate_cords_action[one_x][one_y][1]][one_plate_cords_action[one_x][one_y][2]] = true;
+                    usedPlats.add(new Integer[] {1, one_x, one_y, 2, one_plate_cords_action[one_x][one_y][1], one_plate_cords_action[one_x][one_y][2], 3});
                 }
             }
         }
@@ -72,19 +83,25 @@ public class FramePlates {
                 if (two_plate_cords_action[two_x][two_y][3] == 1) {
                     two_wall_h[two_plate_cords_action[two_x][two_y][1]][two_plate_cords_action[two_x][two_y][2]] = false;
                     two_wall_v[two_plate_cords_action[two_x][two_y][1]][two_plate_cords_action[two_x][two_y][2]] = false;
+                    usedPlats.add(new Integer[] {2, two_x, two_y, 1, two_plate_cords_action[two_x][two_y][1], two_plate_cords_action[two_x][two_y][2], 1});
                 } else if (two_plate_cords_action[two_x][two_y][3] == 2) {
                     two_wall_v[two_plate_cords_action[two_x][two_y][1]][two_plate_cords_action[two_x][two_y][2]] = true;
+                    usedPlats.add(new Integer[] {2, two_x, two_y, 1, two_plate_cords_action[two_x][two_y][1], two_plate_cords_action[two_x][two_y][2], 2});
                 } else if (two_plate_cords_action[two_x][two_y][3] == 3) {
                     two_wall_h[two_plate_cords_action[two_x][two_y][1]][two_plate_cords_action[two_x][two_y][2]] = true;
+                    usedPlats.add(new Integer[] {2, two_x, two_y, 1, two_plate_cords_action[two_x][two_y][1], two_plate_cords_action[two_x][two_y][2], 3});
                 }
             } else if (two_plate_cords_action[two_x][two_y][0] == 2) {
                 if (two_plate_cords_action[two_x][two_y][3] == 1) {
                     one_wall_h[two_plate_cords_action[two_x][two_y][1]][two_plate_cords_action[two_x][two_y][2]] = false;
                     one_wall_v[two_plate_cords_action[two_x][two_y][1]][two_plate_cords_action[two_x][two_y][2]] = false;
+                    usedPlats.add(new Integer[] {2, two_x, two_y, 2, two_plate_cords_action[two_x][two_y][1], two_plate_cords_action[two_x][two_y][2], 1});
                 } else if (two_plate_cords_action[two_x][two_y][3] == 2) {
                     one_wall_v[two_plate_cords_action[two_x][two_y][1]][two_plate_cords_action[two_x][two_y][2]] = true;
+                    usedPlats.add(new Integer[] {2, two_x, two_y, 2, two_plate_cords_action[two_x][two_y][1], two_plate_cords_action[two_x][two_y][2], 2});
                 } else if (two_plate_cords_action[two_x][two_y][3] == 3) {
                     one_wall_h[two_plate_cords_action[two_x][two_y][1]][two_plate_cords_action[two_x][two_y][2]] = true;
+                    usedPlats.add(new Integer[] {2, two_x, two_y, 2, two_plate_cords_action[two_x][two_y][1], two_plate_cords_action[two_x][two_y][2], 3});
                 }
             }
         }
