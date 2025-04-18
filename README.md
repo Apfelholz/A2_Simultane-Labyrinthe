@@ -7,8 +7,10 @@ This project is a solution for the task "Simultane Labyrinthe" from the second r
 Ensure you have Java installed on your system. Compile and run the main program with:
 ```bash
 javac src\SimulanteLabyrinthe.java
-java -cp src SimulanteLabyrinthe <input-file-path>
+java -cp src SimulanteLabyrinthe <input-file-path> <method> 
 ```
+> ⚠️ **Warning:**  
+> Enabling the plate expansion by setting the method to `plates` will **consistently slow down the program**.
 ## Input Format
 
 The input is a `.txt` file that describes the two labyrinths. The structure is as follows:
