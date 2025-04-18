@@ -202,6 +202,23 @@ public class SyncronDixtraPlates {
             }
         }
 
+        if (akk.one_x != f_one_x || akk.one_y != f_one_y){
+            for (FramePlates f : options){
+                if (f.one_x == f_one_x && akk.one_y == f_one_y){
+                    f.lastDirection = -f.lastDirection;
+                    f.two_lastDirection = -f.two_lastDirection;
+                }
+            }
+        }
+        if (akk.two_x != f_two_x || akk.two_y != f_two_y){
+            for (FramePlates f : options){
+                if (f.two_x == f_two_x && akk.two_y == f_two_y){
+                    f.lastDirection = -f.lastDirection;
+                    f.one_lastDirection = -f.two_lastDirection;
+                }
+            }
+        }
+
         return options;
     }
 
@@ -242,13 +259,13 @@ public class SyncronDixtraPlates {
                     result[result.length-1] = 'X';
                 }
                 return result;
-            }else if (f.lastDirection == 1){
+            }else if (f.lastDirection == 1 || f.lastDirection == -1){
                 Instructions.add('^');
-            }else if (f.lastDirection == 2){
+            }else if (f.lastDirection == 2 || f.lastDirection == -2){
                 Instructions.add('>');
-            }else if (f.lastDirection == 3){
+            }else if (f.lastDirection == 3 || f.lastDirection == -3){
                 Instructions.add('|');
-            }else if (f.lastDirection == 4){
+            }else if (f.lastDirection == 4 || f.lastDirection == -4){
                 Instructions.add('<');
             }
             f = f.dad;
