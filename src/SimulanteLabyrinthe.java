@@ -98,37 +98,59 @@ public class SimulanteLabyrinthe {
             instructions = syncronDixtra.findInstructions(starts[0][0], starts[0][1], starts[1][0], starts[1][1], starts[2][0], starts[2][1], starts[3][0], starts[3][1]);
         } 
 
+        FileLogger fileLogger = new FileLogger("output\\output_" + version + "_" + dateipfad.substring(15, 16) + ".txt");
+
         System.out.println("---------------------------------------------------------------------------");
 
         System.out.println("Beispiel: " + dateipfad);
 
         System.out.println(" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ");
 
+        fileLogger.println("====================================");
+        fileLogger.println("Results for file: " + dateipfad);
+        fileLogger.println("====================================");
+
         if (instructions.length > 0 && instructions[instructions.length - 1] != 'X') {
-            System.out.println("Es wurde eine Loesung gefunden");
-            System.out.println("Folgende Anweisungsfolge ist die kuerzeste moegliche");
-            for (char c : instructions) {
-                if (c != '\0') {
-                    System.out.print(c);
-                }
+        System.out.println("Es wurde eine Loesung gefunden");
+        System.out.println("Folgende Anweisungsfolge ist die kuerzeste moegliche");
+        fileLogger.println("Es wurde eine Loesung gefunden");
+        fileLogger.println("Folgende Anweisungsfolge ist die kuerzeste moegliche");
+        for (char c : instructions) {
+            if (c != '\0') {
+            System.out.print(c);
+            fileLogger.print(c);
             }
-            System.out.println("");
-            System.out.println("(^:hoch ; >:rechts ; |:runter ; <:links)");
-            System.out.println("Die Anweisungsfolge hat eine Laenge von: " + instructions.length);
+        }
+        System.out.println("");
+        fileLogger.println("");
+        System.out.println("(^:hoch ; >:rechts ; |:runter ; <:links)");
+        fileLogger.println("(^:hoch ; >:rechts ; |:runter ; <:links)");
+        System.out.println("Die Anweisungsfolge hat eine Laenge von: " + (instructions.length-1));
+        fileLogger.println("Die Anweisungsfolge hat eine Laenge von: " + (instructions.length-1));
         } else {
-            System.out.println("Es konnte keine Loesung gefunden werden.");
-            System.out.println("Folgende Anweisungsfolge ist die best moegliche");
-            for (char c : instructions) {
-                if (c != '\0') {
-                    System.out.print(c);
-                }
+        System.out.println("Es konnte keine Loesung gefunden werden.");
+        System.out.println("Folgende Anweisungsfolge ist die best moegliche");
+        fileLogger.println("Es konnte keine Loesung gefunden werden.");
+        fileLogger.println("Folgende Anweisungsfolge ist die best moegliche");
+        for (char c : instructions) {
+            if (c != '\0') {
+            System.out.print(c);
+            fileLogger.print(c);
             }
-            System.out.println("");
-            System.out.println("(^:hoch ; >:rechts ; |:runter ; <:links)");
-            System.out.println("Die Anweisungsfolge hat eine Laenge von: " + instructions.length);
+        }
+        System.out.println("");
+        fileLogger.println("");
+        System.out.println("(^:hoch ; >:rechts ; |:runter ; <:links)");
+        fileLogger.println("(^:hoch ; >:rechts ; |:runter ; <:links)");
+        System.out.println("Die Anweisungsfolge hat eine Laenge von: " + (instructions.length-1));
+        fileLogger.println("Die Anweisungsfolge hat eine Laenge von: " + (instructions.length-1));
         }
 
+        fileLogger.println("====================================");
+        fileLogger.println("");
         System.out.println("---------------------------------------------------------------------------");
+
+        fileLogger.close();
 
         if (version == "plates"){
             for (Integer[] p : usedPlats){
