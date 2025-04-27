@@ -17,7 +17,7 @@ public class Frame {
         this.two_y = two_y;
         this.dad = dad;
         this.lastDirection = direction;
-        this.one_lastDirection = one_direction;
-        this.two_lastDirection = two_direction;
+        this.one_lastDirection = 0;
+        this.two_lastDirection = 0;
     }
 }
