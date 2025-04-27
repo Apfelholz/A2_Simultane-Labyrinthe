@@ -56,24 +56,36 @@ public class FramePlates {
                     one_wall_h[one_plate_cords_action[one_x][one_y][1]][one_plate_cords_action[one_x][one_y][2]] = false;
                     one_wall_v[one_plate_cords_action[one_x][one_y][1]][one_plate_cords_action[one_x][one_y][2]] = false;
                     usedPlats.add(new Integer[] {1, one_x, one_y, 1, one_plate_cords_action[one_x][one_y][1], one_plate_cords_action[one_x][one_y][2], 1});
+                    lastDirection = -lastDirection;
+                    one_lastDirection = -one_lastDirection;
                 } else if (one_plate_cords_action[one_x][one_y][3] == 2) {
                     one_wall_v[one_plate_cords_action[one_x][one_y][1]][one_plate_cords_action[one_x][one_y][2]] = true;
                     usedPlats.add(new Integer[] {1, one_x, one_y, 1, one_plate_cords_action[one_x][one_y][1], one_plate_cords_action[one_x][one_y][2], 2});
+                    lastDirection = -lastDirection;
+                    one_lastDirection = -one_lastDirection;
                 } else if (one_plate_cords_action[one_x][one_y][3] == 3) {
                     one_wall_h[one_plate_cords_action[one_x][one_y][1]][one_plate_cords_action[one_x][one_y][2]] = true;
                     usedPlats.add(new Integer[] {1, one_x, one_y, 1, one_plate_cords_action[one_x][one_y][1], one_plate_cords_action[one_x][one_y][2], 3});
+                    lastDirection = -lastDirection;
+                    one_lastDirection = -one_lastDirection;
                 }
             } else if (one_plate_cords_action[one_x][one_y][0] == 2) {
                 if (one_plate_cords_action[one_x][one_y][3] == 1) {
                     two_wall_h[one_plate_cords_action[one_x][one_y][1]][one_plate_cords_action[one_x][one_y][2]] = false;
                     two_wall_v[one_plate_cords_action[one_x][one_y][1]][one_plate_cords_action[one_x][one_y][2]] = false;
                     usedPlats.add(new Integer[] {1, one_x, one_y, 2, one_plate_cords_action[one_x][one_y][1], one_plate_cords_action[one_x][one_y][2], 1});
+                    lastDirection = -lastDirection;
+                    two_lastDirection = -two_lastDirection;
                 } else if (one_plate_cords_action[one_x][one_y][3] == 2) {
                     two_wall_v[one_plate_cords_action[one_x][one_y][1]][one_plate_cords_action[one_x][one_y][2]] = true;
                     usedPlats.add(new Integer[] {1, one_x, one_y, 2, one_plate_cords_action[one_x][one_y][1], one_plate_cords_action[one_x][one_y][2], 2});
+                    lastDirection = -lastDirection;
+                    two_lastDirection = -two_lastDirection;
                 } else if (one_plate_cords_action[one_x][one_y][3] == 3) {
                     two_wall_h[one_plate_cords_action[one_x][one_y][1]][one_plate_cords_action[one_x][one_y][2]] = true;
                     usedPlats.add(new Integer[] {1, one_x, one_y, 2, one_plate_cords_action[one_x][one_y][1], one_plate_cords_action[one_x][one_y][2], 3});
+                    lastDirection = -lastDirection;
+                    two_lastDirection = -two_lastDirection;
                 }
             }
         }
@@ -84,24 +96,36 @@ public class FramePlates {
                     two_wall_h[two_plate_cords_action[two_x][two_y][1]][two_plate_cords_action[two_x][two_y][2]] = false;
                     two_wall_v[two_plate_cords_action[two_x][two_y][1]][two_plate_cords_action[two_x][two_y][2]] = false;
                     usedPlats.add(new Integer[] {2, two_x, two_y, 1, two_plate_cords_action[two_x][two_y][1], two_plate_cords_action[two_x][two_y][2], 1});
+                    lastDirection = -lastDirection;
+                    two_lastDirection = -two_lastDirection;
                 } else if (two_plate_cords_action[two_x][two_y][3] == 2) {
                     two_wall_v[two_plate_cords_action[two_x][two_y][1]][two_plate_cords_action[two_x][two_y][2]] = true;
                     usedPlats.add(new Integer[] {2, two_x, two_y, 1, two_plate_cords_action[two_x][two_y][1], two_plate_cords_action[two_x][two_y][2], 2});
+                    lastDirection = -lastDirection;
+                    two_lastDirection = -two_lastDirection;
                 } else if (two_plate_cords_action[two_x][two_y][3] == 3) {
                     two_wall_h[two_plate_cords_action[two_x][two_y][1]][two_plate_cords_action[two_x][two_y][2]] = true;
                     usedPlats.add(new Integer[] {2, two_x, two_y, 1, two_plate_cords_action[two_x][two_y][1], two_plate_cords_action[two_x][two_y][2], 3});
+                    lastDirection = -lastDirection;
+                    two_lastDirection = -two_lastDirection;
                 }
             } else if (two_plate_cords_action[two_x][two_y][0] == 2) {
                 if (two_plate_cords_action[two_x][two_y][3] == 1) {
                     one_wall_h[two_plate_cords_action[two_x][two_y][1]][two_plate_cords_action[two_x][two_y][2]] = false;
                     one_wall_v[two_plate_cords_action[two_x][two_y][1]][two_plate_cords_action[two_x][two_y][2]] = false;
                     usedPlats.add(new Integer[] {2, two_x, two_y, 2, two_plate_cords_action[two_x][two_y][1], two_plate_cords_action[two_x][two_y][2], 1});
+                    lastDirection = -lastDirection;
+                    one_lastDirection = -one_lastDirection;
                 } else if (two_plate_cords_action[two_x][two_y][3] == 2) {
                     one_wall_v[two_plate_cords_action[two_x][two_y][1]][two_plate_cords_action[two_x][two_y][2]] = true;
                     usedPlats.add(new Integer[] {2, two_x, two_y, 2, two_plate_cords_action[two_x][two_y][1], two_plate_cords_action[two_x][two_y][2], 2});
+                    lastDirection = -lastDirection;
+                    one_lastDirection = -one_lastDirection;
                 } else if (two_plate_cords_action[two_x][two_y][3] == 3) {
                     one_wall_h[two_plate_cords_action[two_x][two_y][1]][two_plate_cords_action[two_x][two_y][2]] = true;
                     usedPlats.add(new Integer[] {2, two_x, two_y, 2, two_plate_cords_action[two_x][two_y][1], two_plate_cords_action[two_x][two_y][2], 3});
+                    lastDirection = -lastDirection;
+                    one_lastDirection = -one_lastDirection;
                 }
             }
         }
