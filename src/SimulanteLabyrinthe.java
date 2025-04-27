@@ -27,7 +27,6 @@ public class SimulanteLabyrinthe {
 
         if (one_numberOfPits > 0){
             one_pits = formatInputData_pits(FileReaderx.readToInt2DArray(dateipfad, 1+(y-1)+y-1+1+1, 1+(y-1)+y-1+1+one_numberOfPits), x, y);
-            one_pitCords = processPitCoordinates(dateipfad, x, y, one_numberOfPits, 1 + (y - 1) + y - 1 + 1 + 1);
         }
 
         boolean[][] two_wall_v = new boolean[x][y];
@@ -43,13 +42,20 @@ public class SimulanteLabyrinthe {
 
         if (two_numberOfPits > 0){
             two_pits = formatInputData_pits(FileReaderx.readToInt2DArray(dateipfad, 1+(y-1)+y-1+1+one_numberOfPits+y+y-1+1+1, 1+(y-1)+y-1+1+one_numberOfPits+y+y-1+1+two_numberOfPits), x, y);
-            two_pitCords = processPitCoordinates(dateipfad, x, y, two_numberOfPits, 1 + (y - 1) + y - 1 + 1 + one_numberOfPits + y + y - 1 + 1 + 1);
         }
 
         int[][] starts = new int[][] {{0,0},{0,0},{x-1,y-1},{x-1,y-1}};
 
         if (FileReaderx.readToInt2DArray(dateipfad, 1+(y-1)+y-1+1+one_numberOfPits+y+y-1+1+two_numberOfPits+1, 1+(y-1)+y-1+1+one_numberOfPits+y+y-1+1+two_numberOfPits+4).length > 0){
             starts = FileReaderx.readToInt2DArray(dateipfad, 1+(y-1)+y-1+1+one_numberOfPits+y+y-1+1+two_numberOfPits+1, 1+(y-1)+y-1+1+one_numberOfPits+y+y-1+1+two_numberOfPits+4);
+        }
+
+        if (two_numberOfPits > 0){
+            two_pitCords = processPitCoordinates(dateipfad, x, y, two_numberOfPits, 1 + (y - 1) + y - 1 + 1 + one_numberOfPits + y + y - 1 + 1 + 1, starts, 1);
+        }
+
+        if (one_numberOfPits > 0){
+            one_pitCords = processPitCoordinates(dateipfad, x, y, one_numberOfPits, 1 + (y - 1) + y - 1 + 1 + 1, starts, 0);
         }
 
         char[] instructions = null;
@@ -210,15 +216,16 @@ public class SimulanteLabyrinthe {
         return wall_h;
     }
 
-    private static int[][][] processPitCoordinates(String dateipfad, int x, int y, int numberOfPits, int startLine) {
+    private static int[][][] processPitCoordinates(String dateipfad, int x, int y, int numberOfPits, int startLine, int[][] starts, int maze) {
         int[][][] pitCords = new int[x][y][2];
-    
-        if (FileReaderx.readToInt2DArray(dateipfad, startLine, startLine + numberOfPits)[0].length > 2) {
-            int[][] lines = FileReaderx.readToInt2DArray(dateipfad, startLine, startLine + numberOfPits);
-    
-            for (int[] i : lines) {
-                pitCords[i[0]][i[1]][0] = i[2];
-                pitCords[i[0]][i[1]][1] = i[3];
+
+        for (int[] l : FileReaderx.readToInt2DArray(dateipfad, startLine, startLine + numberOfPits)){
+            if (l.length > 2){
+                pitCords[l[0]][l[1]][0] = l[2];
+                pitCords[l[0]][l[1]][1] = l[3];
+            } else{
+                pitCords[l[0]][l[1]][0] = starts[maze][0];
+                pitCords[l[0]][l[1]][1] = starts[maze][1];
             }
         }
     
