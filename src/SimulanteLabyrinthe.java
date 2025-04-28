@@ -99,6 +99,9 @@ public class SimulanteLabyrinthe {
                 }
             }
 
+        }else if (version == "duties"){
+            SyncronDixtraDuties syncronDixtra = new SyncronDixtraDuties(one_wall_v, one_wall_h, one_pits, two_wall_v, two_wall_h, two_pits, x, y, one_pitCords, two_pitCords);
+            instructions = syncronDixtra.findInstructions(starts[0][0], starts[0][1], starts[1][0], starts[1][1], starts[2][0], starts[2][1], starts[3][0], starts[3][1]);
         }else{
             SyncronDixtra syncronDixtra = new SyncronDixtra(one_wall_v, one_wall_h, one_pits, two_wall_v, two_wall_h, two_pits, x, y, one_pitCords, two_pitCords);
             instructions = syncronDixtra.findInstructions(starts[0][0], starts[0][1], starts[1][0], starts[1][1], starts[2][0], starts[2][1], starts[3][0], starts[3][1]);
@@ -217,15 +220,21 @@ public class SimulanteLabyrinthe {
     }
 
     private static int[][][] processPitCoordinates(String dateipfad, int x, int y, int numberOfPits, int startLine, int[][] starts, int maze) {
-        int[][][] pitCords = new int[x][y][2];
+        int[][][] pitCords = new int[x][y][3];
 
         for (int[] l : FileReaderx.readToInt2DArray(dateipfad, startLine, startLine + numberOfPits)){
-            if (l.length > 2){
+            if (l.length > 4){
                 pitCords[l[0]][l[1]][0] = l[2];
                 pitCords[l[0]][l[1]][1] = l[3];
-            } else{
+                pitCords[l[0]][l[1]][2] = l[4];
+            }else if (l.length > 2){
+                pitCords[l[0]][l[1]][0] = l[2];
+                pitCords[l[0]][l[1]][1] = l[3];
+                pitCords[l[0]][l[1]][2] = 0;
+            }else {
                 pitCords[l[0]][l[1]][0] = starts[maze][0];
                 pitCords[l[0]][l[1]][1] = starts[maze][1];
+                pitCords[l[0]][l[1]][2] = 0;
             }
         }
     

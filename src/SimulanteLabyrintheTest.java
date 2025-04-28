@@ -5,6 +5,19 @@ import java.io.PrintStream;
 import java.util.Arrays;
 
 public class SimulanteLabyrintheTest{
+
+    @Test
+    void testMainWithLabyrinthA_duties() {
+        String[] output = testMainWithFile("data\\labyrintheM.txt", "duties");
+        for (String l : output){
+            System.out.println(l);
+        }
+        boolean found = Arrays.stream(output)
+            .anyMatch(line -> line.startsWith("Es wurde eine Loesung gefunden"));
+
+        assertTrue(found, "Solution Found!");
+    }
+
     @Test
     void testMainWithLabyrinthA_main() {
         String[] output = testMainWithFile("data\\labyrintheA.txt", "main");

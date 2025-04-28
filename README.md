@@ -9,10 +9,10 @@ Ensure you have Java installed on your system. Run the main program with:
 java -jar <program-file-path> <input-file-path> <version>
 ```
 
-If no version is specified, the plate expansion will not be active. It will still be possible to provide custom start/end points and modify the lead fields of pits.
+If no version is specified, the plate and duties expansions will not be active. It will still be possible to provide custom start/end points and modify the lead fields of pits. Note that the plate and duties expansions cannot be combined.
 
 > ⚠️ **Warning:**  
-> Enabling the plate expansion by setting the version to `plates` will **consistently slow down the program**.
+> Enabling the plate or duties expansion by setting the version to `plates` or `duties` will **consistently slow down the program**.
 
 ## Input Format
 
@@ -29,9 +29,14 @@ The input is a `.txt` file that describes the two labyrinths. The structure is a
 4. **Number of Pits**:
     - A single line specifying the number `g` of pits in the labyrinth.
 5. **Pit Coordinates**:
-    - `g` lines, each containing the coordinates of a pit in the format `xy`/`xy xy`/`xy xy 1/2`.
-    - If there are no pits, this section is skipped.
-    - If the pit leads to a field other than `(0,0)`, the second set of coordinates defines the outcome position.
+    - `g` lines, each containing the coordinates of a pit in one of the following formats:  
+        - `x y`: Specifies the coordinates of a pit.  
+        - `x y x' y'`: Specifies a pit that leads to a different field `(x', y')`.  
+        - `x y x' y' p`: Specifies a pit with a cost `p` (only applicable if the duties expansion is active).  
+
+        - If there are no pits, this section is skipped.  
+        - If the pit leads to a field other than `(0, 0)`, the second set of coordinates defines the destination position.  
+        - If the cost of the pit isn't zero, `p` defines it.  
 
 The second labyrinth follows the same structure, starting with the vertical wall definitions.
 
