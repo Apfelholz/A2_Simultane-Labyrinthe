@@ -107,7 +107,7 @@ public class SimulanteLabyrinthe {
             instructions = syncronDixtra.findInstructions(starts[0][0], starts[0][1], starts[1][0], starts[1][1], starts[2][0], starts[2][1], starts[3][0], starts[3][1]);
         } 
 
-        FileLogger fileLogger = new FileLogger("output\\output_" + version + "_" + dateipfad.substring(15, 16) + ".txt");
+        FileLogger fileLogger = new FileLogger("output_" + version + "_" + dateipfad.substring(15, 16) + ".txt");
 
         System.out.println("---------------------------------------------------------------------------");
 
